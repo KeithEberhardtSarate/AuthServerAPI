@@ -11,7 +11,6 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL.replace('<password>', encodeURIComponent(process.env.DATABASE_PASSWORD));
-;
 
 // Middlewares
 app.use(express.json());
