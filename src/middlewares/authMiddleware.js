@@ -9,7 +9,7 @@ function validateToken(req, res, next) {
   const token = req.header('Authorization')?.replace('Bearer ', '');
 
   if (!token) {
-    return res.status(401).json({ mensagem: 'Token not provided.' });
+    return res.status(401).json({ message: 'Token not provided.' });
   }
 
   jwt.verify(token, SECRET_KEY, (error, decodedToken) => {
