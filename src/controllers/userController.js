@@ -6,7 +6,7 @@ async function createNewUser(req, res) {
     const user = await createUser(name, email, password);
     res.status(201).json(user);
   } catch (error) {
-    res.status(500).json({ mensagem: 'Error creating user.', erro: error.message });
+    res.status(500).json({ message: 'Error creating user.', erro: error.message });
   }
 }
 
