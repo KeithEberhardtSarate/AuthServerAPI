@@ -6,7 +6,7 @@ async function login(req, res) {
     const token = await authenticateUser(email, password);
     res.json({ token });
   } catch (error) {
-    res.status(401).json({ mensagem: 'Invalid credentials.', erro: error.message });
+    res.status(401).json({ message: 'Invalid credentials.', erro: error.message });
   }
 }
 
