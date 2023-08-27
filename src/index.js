@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 import authRoutes from './routes/authRoutes.js';
 
@@ -16,6 +17,7 @@ const DATABASE_URL = process.env.DATABASE_URL
 
 // Middlewares
 app.use(express.json());
+app.use(cors());
 
 // Routes
 app.use('/api/auth', authRoutes);
