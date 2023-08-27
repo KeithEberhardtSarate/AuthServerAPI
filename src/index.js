@@ -10,7 +10,9 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const DATABASE_URL = process.env.DATABASE_URL.replace('<password>', encodeURIComponent(process.env.DATABASE_PASSWORD));
+const DATABASE_URL = process.env.DATABASE_URL
+  .replace('<password>', encodeURIComponent(process.env.DATABASE_PASSWORD))
+  .replace('<database>', encodeURIComponent(process.env.DATABASE_NAME))
 
 // Middlewares
 app.use(express.json());
@@ -29,9 +31,10 @@ mongoose
     if (!defaultUser) {
       // Creates default user
       const newUser = new User({
-        nome: 'Keith',
+        name: 'Keith',
         email: 'keithsarate.info@gmail.com',
-        senha: 'senha123',
+        password: 'senha123',
+        applicationKey: 'TESTE'
       });
 
       await newUser.save();

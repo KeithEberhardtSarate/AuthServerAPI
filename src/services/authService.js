@@ -8,7 +8,8 @@ dotenv.config();
 const { SECRET_KEY, TOKEN_EXPIRATION } = process.env;
 
 async function authenticateUser(email, password) {
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }); 
+
   if (!user) {
     throw new Error('User not found.');
   }
@@ -18,7 +19,13 @@ async function authenticateUser(email, password) {
     throw new Error('Invalid credentials.');
   }
 
-  const token = jwt.sign({ id: user._id }, SECRET_KEY, { expiresIn: TOKEN_EXPIRATION });
+  const payload = {
+    id: user._id,
+    name: user.name,
+    email: user.email,
+  }
+
+  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: TOKEN_EXPIRATION });
   return token;
 }
 
